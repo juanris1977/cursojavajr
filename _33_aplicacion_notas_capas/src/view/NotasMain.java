@@ -1,6 +1,6 @@
 package view;
 
-
+//comentario
 import java.util.Scanner;
 
 import service.NotasService;  //  Para poder usar los métodos de la otra clase, tenemos que importarla 
@@ -11,6 +11,7 @@ public class NotasMain {
 	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		int nota;
 		int opcion;
 		
 		do {
