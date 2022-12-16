@@ -22,9 +22,14 @@ public class NotasService {
 	
 	public double media(){
 		double media=0;
-		for (int i=0;i<notas.size();i++) {
+		/*for (int i=0;i<notas.size();i++) {
 			media=media+notas.get(i); 
+		}*/
+		
+		for (double n:notas) {
+			media=media+n;
 		}
+		
 		media=media/notas.size();
 		return media; 
 	}
@@ -34,6 +39,8 @@ public class NotasService {
 		for (int i=0;i<notas.size();i++) {
 			if (notas.get(i)>=5) aprobados++;
 		}
+	
+		
 		return aprobados;
 	}
 	
