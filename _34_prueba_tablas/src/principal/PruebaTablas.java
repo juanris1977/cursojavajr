@@ -15,11 +15,12 @@ public class PruebaTablas {
 		tabla.put(100, "Jueves");
 		
 	//	System.out.println("eliminamos: "+ tabla.remove(300));
-		// recorre los vaores de un hashmaps
+		// recorre los valores de un hashmaps
 		Collection<String> col=tabla.values();   // Ojo que hashmap no tiene un orden establecido, puede darte los valores en cualquier orden 
 		for (String s:col) {
 			System.out.println(s);
 		}
+		
 		
 		// recorrer claves de un hashmap
 		
