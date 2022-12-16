@@ -35,9 +35,14 @@ public class NotasMain {
 				break;
 			case 6:
 				eliminarSuspensos();
+				break;
+			case 7:
+				subirNotas();
+				break;
+				
 				
 			}
-		}while(opcion!=7);
+		}while(opcion!=8);
 	}
 	
 	static void mostrarMenu() {
@@ -47,7 +52,8 @@ public class NotasMain {
 		System.out.println("4.- Notas extremas");
 		System.out.println("5.- Mostrar todas");
 		System.out.println("6.- Eliminar suspensos");
-		System.out.println("7.- Salir"); 
+		System.out.println("7.- Subir notas");
+		System.out.println("8.- Salir"); 
 	}
 	
 	static void pedirNota() {
@@ -87,5 +93,8 @@ public class NotasMain {
 		System.out.println("Hemos eliminado los suspensos");
 			
 		}
+	static void subirNotas() {
+		notasService.subirNotas();
+	}
 	
 }
