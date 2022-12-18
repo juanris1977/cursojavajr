@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 
 /*EJERCICIO AGENDA DE CONTACTOS
-1.- Nuevo contacto
+1.- Nuevo contactoo
 2.- Buscar contacto
 3.- Borrar contacto
 4.- Mostrar todos los nombres 

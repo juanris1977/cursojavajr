@@ -1,6 +1,6 @@
 package principal;
 
-import java.util.Collection;
+import java.util.Collection;  // subir
 import java.util.HashMap;
 import java.util.Set;
 
