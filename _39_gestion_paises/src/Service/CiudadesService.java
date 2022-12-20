@@ -30,11 +30,16 @@ public class CiudadesService {
 	public ArrayList <Ciudad> ciudadesPais (String pais) {
 		ArrayList <Ciudad> arrayciudades = new ArrayList <> ();
 		
-		for (int i=0; i<ciudades.size();i++) {
-			if (pais.equals(ciudades.get(i).getPais())     )
+	/*	for (int i=0; i<ciudades.size();i++) {
+			if (pais.equals(ciudades.get(i).getPais()))
 				arrayciudades.add(ciudades.get(i));
 			}
-				
+				*/
+		for (Ciudad c : ciudades) {
+			if (pais.equals(c.getPais())) {
+				arrayciudades.add(c);
+			}
+		}
 		return arrayciudades;
 	}
 }
