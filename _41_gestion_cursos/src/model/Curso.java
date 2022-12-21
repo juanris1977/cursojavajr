@@ -3,10 +3,10 @@ package model;
 public class Curso {
 	private String nombre;
 	private int duracion;
-	private int precio;
+	private double precio;
 	private String tematica;
 	
-	public Curso(String nombre, int duracion, int precio, String tematica) {
+	public Curso(String nombre, int duracion, double precio, String tematica) {
 		
 		this.nombre = nombre;
 		this.duracion = duracion;
@@ -30,11 +30,11 @@ public class Curso {
 		this.duracion = duracion;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 

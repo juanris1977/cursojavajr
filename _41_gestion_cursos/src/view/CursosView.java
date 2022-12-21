@@ -7,6 +7,7 @@ package view;
 5.- Eliminar cursos por precio
 6.- Salir*/
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.Curso;
@@ -40,21 +41,25 @@ public class CursosView {
 			case 5:
 				eliminarCurso();
 				break;
-			case 6: System.out.println("--- Adios ---");
+			case 6:
+				mostrarTodos();
+				break;
+			case 7: System.out.println("--- Adios ---");
 			}
-		}while(opcion!=6);
+		}while(opcion!=7);
 		
 
 	}
 	
 	static void mostrarMenu() {
-		
+		System.out.println();
 		System.out.println("1.- Añadir curso ");
 		System.out.println("2.- Buscar curso ");
 		System.out.println("3.- Duración media de cursos");
 		System.out.println("4.- Cursos por temática");
 		System.out.println("5.- Eliminar cursos por precio");
-		System.out.println("6.- Salir");
+		System.out.println("6.- Mostrar todos");
+		System.out.println("7.- Salir");
 	}
 	
 	
@@ -65,15 +70,13 @@ public class CursosView {
 		Boolean existe = false;
 		String tematica;
 		
-		/*do {
-			System.out.println("Nombre del curso: ");
-			nom= sc.nextLine();
-			} while (!service.buscarCurso(nom).getNombre().equalsIgnoreCase(nom));*/
-		
-		//  no funcionaria porque si no encuentra el curso, devuelve nulo y no se puede acceder al nombre
 		
 		System.out.println("Nombre del curso: ");
-		nom= sc.nextLine();		
+		nom= sc.nextLine();
+	    while (service.buscarCurso(nom)!=null) {
+	    	System.out.println("Ya existe un curso con ese nombre, por favor, introduce otro nombre: ");
+	    	nom= sc.nextLine();
+	    }
 		System.out.println("Duración del curso: ");
 		duracion=Integer.parseInt(sc.nextLine());
 		System.out.println("Precio del curso: ");
@@ -85,14 +88,18 @@ public class CursosView {
 	}
 	
 	static void buscarCurso() {
+		String nombrecurso;
+		System.out.println("Qué curso buscas: ");
+		nombrecurso=sc.nextLine();
+		Curso curso=service.buscarCurso(nombrecurso);
 		
-		System.out.println("¿Qué curso buscas: ");
-		Curso curso=service.buscarCurso(sc.nextLine());
-		
-		// como hacer que busque primero si existe ese curso, y si no existe que diga que no existe
+		if (curso==null) {
+			System.out.println("El curso "+nombrecurso+ " que estás buscando no existe");
+		}else {
 		
 		System.out.println("El curso "+curso.getNombre()+" de "+curso.getDuracion()+" horas de duración, y con precio de "+
-							curso.getPrecio()+ "€ , fue de la tematica "+curso.getTematica());
+							curso.getPrecio()+ "€ , es de la tematica "+curso.getTematica());
+		}
 							
 		
 	}
@@ -101,4 +108,34 @@ public class CursosView {
 		System.out.println("La duración media de los cursos es: " +service.duracionMedia()+" horas");
 	}
 
+	static void cursosTematica () {
+		System.out.println("Introduce temática: ");
+		String tematica = sc.nextLine();
+		ArrayList<String> cur=service.cursosTematica(tematica);
+		
+		if (cur.size()>0) {
+			System.out.println("Existen los siguientes cursos con temática "+tematica);
+			for (String c: cur) {
+				System.out.println(c);
+			}
+		}else {
+			System.out.println("No Existe ningún curso con temática "+tematica);
+			
+		}
+		
+	}
+	
+	static void eliminarCurso () {
+		System.out.println("Introduce el precio máximo y eliminamos los cursos mas caros que ese precio: ");
+
+		System.out.println("Se han eliminado "+service.eliminarCurso(Integer.parseInt(sc.nextLine()))+" cursos");
+	}
+	static void mostrarTodos() {
+		
+		ArrayList<Curso> cur = service.mostrarTodos();
+		
+		for(Curso c:cur){		
+		System.out.println(((Curso) c).getNombre()+"-->"+c.getDuracion()+" horas "+ c.getPrecio()+" € "+ "("+c.getTematica()+")");
+		}
+	}
 }

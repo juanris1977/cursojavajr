@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import model.Curso;
@@ -9,13 +10,14 @@ import model.Curso;
 3.- Duración media de cursos
 4.- Cursos por temática
 5.- Eliminar cursos por precio
-6.- Salir
+6.- Mostrar todos los cursos
+7.- Salir
 */
 public class CursosService {
 
 	HashSet <Curso> curso = new HashSet <>();
 	
-	public void añadirCurso(String nombre, int duracion, int precio, String tematica) {
+	public void añadirCurso(String nombre, int duracion, double precio, String tematica) {
 		curso.add(new Curso(nombre, duracion, precio, tematica));	
 	}
 	
@@ -44,22 +46,47 @@ public class CursosService {
 		
 	}
 	
-	public  cursosTematica(String tematica) {
-		// quiero devolver un array de nombre de cursos con esa tematica 
+	public ArrayList<String> cursosTematica(String tematica) {
+		
+		ArrayList<String> res = new ArrayList<>();
+		// quiero devolver un arraylist  de nombres de cursos con esa tematica 
 		for (Curso c : curso) {
 			if (c.getTematica().equalsIgnoreCase(tematica)) {
-				res[] = c;
+				res.add(c.getNombre());
 			}
 		}
 		return res;
 		
 	}
 	
-	public void eliminarCurso(double precio) {
+	public int  eliminarCurso(int precio) {
+		int cuantos=0;
 		for (Curso c: curso) {
 			if (c.getPrecio() > precio) {
 				curso.remove(c);
+				cuantos++;
 			}
 		}
+		return cuantos;
+	}
+	/*
+	public void  eliminarCurso(double precio) {
+		
+		for (Curso c: curso) {
+			if (c.getPrecio() > precio) {
+				curso.remove(c);
+				
+			}
+		}
+	}
+	*/
+	
+	public ArrayList<Curso>  mostrarTodos () {
+		 ArrayList<Curso> res = new ArrayList<>();
+		 for (Curso c: curso) {
+			 res.add(c);
+			
+		}
+	return res;	 
 	}
 }
