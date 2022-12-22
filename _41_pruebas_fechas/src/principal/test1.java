@@ -6,8 +6,9 @@ import java.util.Date;
 
 public class test1 {
 
-	public static void main(String[] args) throws ParseException {
-		Date d1 = new Date();
+	public static void main(String[] args)  {
+		int suma = 3;
+	/*	Date d1 = new Date();
 		Date d2 = new Date (3052245522323L);  // milisegundos desde 1 enero 1970 , si el número es muy grande, la L , lo "convierte" a Long
 		System.out.println("d1: "+d1);
 		System.out.println("d2: "+d2);
@@ -22,16 +23,28 @@ public class test1 {
 		SimpleDateFormat formatofecha=new SimpleDateFormat("dd-MM-yyyy h:mm:ss");
 		
 		System.out.println(formatofecha.format(d1));
-		System.out.println(formatofecha.format(d2));
+		System.out.println(formatofecha.format(d2));*/
 
 		// parseado de fechas
 		
-		SimpleDateFormat formafecha=new SimpleDateFormat("dd-MM-yyyy");
-		String f ="11-08-2011";
-		Date mifecha = formafecha.parse(f);
+		SimpleDateFormat formafecha=new SimpleDateFormat("dd/mm/yyyy");
+		String f1 ="25/27/2017";
 		
-		System.out.println(mifecha);
-		System.out.println(formatofecha.format(mifecha));
-	}
-
+		try {
+		
+		Date mifecha = formafecha.parse(f1);
+		
+		System.out.println("1-->" +mifecha);
+		System.out.println("2-->"+formafecha.format(mifecha));
+	//	suma= suma/0 ;
+		
+		}
+		catch (ParseException ex) {
+			System.out.println("El formato de fecha no es correcto");
+		}
+		/*catch (ArithmeticException ex) {
+			System.out.println("No se puede dividir entre cero");
+		}
+		*/
+}
 }
