@@ -51,6 +51,8 @@ public class CursosView {
 
 	}
 	
+	
+	
 	static void mostrarMenu() {
 		System.out.println();
 		System.out.println("1.- Añadir curso ");
@@ -134,8 +136,13 @@ public class CursosView {
 		
 		ArrayList<Curso> cur = service.mostrarTodos();
 		
-		for(Curso c:cur){		
-		System.out.println(((Curso) c).getNombre()+"-->"+c.getDuracion()+" horas "+ c.getPrecio()+" € "+ "("+c.getTematica()+")");
+		if (cur.isEmpty()) {
+			System.out.println("Aún no hay cursos dados de alta");
+		}
+		else {
+			for(Curso c:cur){		
+			System.out.println(c.getNombre()+"-->"+c.getDuracion()+" horas "+ c.getPrecio()+" € "+ "("+c.getTematica()+")");
+			}
 		}
 	}
 }
