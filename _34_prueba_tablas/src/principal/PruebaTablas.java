@@ -9,10 +9,10 @@ public class PruebaTablas {
 	public static void main(String[] args) {
 
 		HashMap<Integer,String> tabla = new HashMap<>();
-		tabla.put(120, "Lunes");
-		tabla.put(1, "Martes");
-		tabla.put(250, "Miercoles");
-		tabla.put(100, "Jueves");
+		tabla.put(1, "Lunes");
+		tabla.put(2, "Martes");
+		tabla.put(3, "Miercoles");
+		tabla.put(4, "Jueves");
 		
 	//	System.out.println("eliminamos: "+ tabla.remove(300));
 		// recorre los valores de un hashmaps
@@ -21,6 +21,7 @@ public class PruebaTablas {
 			System.out.println(s);
 		}
 		
+		System.out.println();
 		
 		// recorrer claves de un hashmap
 		
@@ -28,7 +29,19 @@ public class PruebaTablas {
 		for (Integer c:claves) {
 			System.out.println(c);
 		}
+		System.out.println();
 		
+		tabla.remove(3);
+		
+////		Collection<String> col=tabla.values();   // Ojo que hashmap no tiene un orden establecido, puede darte los valores en cualquier orden 
+		for (String s:col) {
+			System.out.println(s);
+		}
+		System.out.println();
+//		Set<Integer> claves=tabla.keySet();
+		for (Integer c:claves) {
+			System.out.println(c);
+		}
 		
 				
 
