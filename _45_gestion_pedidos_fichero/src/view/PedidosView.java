@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import model.Pedido;
@@ -12,7 +13,7 @@ import service.PedidosService;
 public class PedidosView {
 	
 	static PedidosService pedidosService = new PedidosService();
-	static SimpleDateFormat formatofecha=new SimpleDateFormat("dd/mm/yyyy");
+	static SimpleDateFormat formatofecha=new SimpleDateFormat("dd/MM/yyyy");
 	
 
 	public static void main(String[] args)  {
@@ -62,7 +63,7 @@ public class PedidosView {
 		
 		System.out.println("Producto: ");
 		producto=sc.nextLine();
-		System.out.println("Cuándo fue comprado (dd-mm-aaaa): ");
+		System.out.println("Cuándo fue comprado (dd/mm/aaaa): ");
 		try {
 			fecha = formatofecha.parse(sc.nextLine());
 			System.out.println("Precio:");
@@ -84,7 +85,7 @@ public class PedidosView {
 
 	static void mostrarTodos() {
 	//	SimpleDateFormat formatofecha=new SimpleDateFormat("dd-MM-yyyy");
-		Pedido [] pedidos = pedidosService.mostrarPedidos();
+		ArrayList<Pedido> pedidos = pedidosService.mostrarPedidos();
 		for (Pedido p: pedidos) {
 			System.out.println(p.getProducto()+"-->"+p.getTotal()+" € el dia "+formatofecha.format(p.getFecha()));
 		}

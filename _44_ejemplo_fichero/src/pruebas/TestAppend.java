@@ -9,7 +9,7 @@ public class TestAppend {
 
 	public static void main(String[] args)  {
 		String dir ="C:\\Users\\manana\\principal\\productos.txt";
-		PrintStream out = null;
+		/*PrintStream out = null;
 		FileOutputStream fos = null;
 		try {
 			fos=new FileOutputStream (dir, true);  // el true es para añadir en el fichero
@@ -31,6 +31,17 @@ public class TestAppend {
 						ex.printStackTrace();
 					}
 			}
+		}*/
+		try (FileOutputStream fos = new FileOutputStream (dir, true);
+			 PrintStream out= new PrintStream (fos);) {
+			 out.println("y otro");
 		}
+		catch (FileNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		catch(IOException ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 }

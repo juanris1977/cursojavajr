@@ -12,3 +12,5 @@ Opción 2: Se pide el nombre del curso y se muestran todos los datos del mismo
 Opción 3: Muestra la duración media de todos los cursos registrados
 Opción 4: Se pìde una temática y se muestran  datos de todos los cursos que tengan esa temática
 Opción 5: Se pide un precio y se eliminarán todos los cursos cuyo precio sea igual o superior a dicho valor
+
+usar hashmap
