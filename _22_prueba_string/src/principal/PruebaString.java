@@ -12,6 +12,7 @@ public class PruebaString {
 		System.out.println(cad1.length());  
 		System.out.println(cad1.toLowerCase());
 		System.out.println(cad1.toUpperCase());
+		
 
 	}
 
