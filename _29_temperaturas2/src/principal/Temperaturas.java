@@ -5,9 +5,9 @@ public class Temperaturas {
 	public static void main(String[] args) {
 		// cuantas ciudades tienen una temperatura superior a la media ?? 
 		
-		String valores="23.7, 11.3, 18.4, 30.1, 28.5, 16.2";
+		String valores="23.7| 11.3";
 		
-		String[] datos = valores.split(",");  // se crea un array con strings de las temperaturas
+		String[] datos = valores.split("[|]");  // se crea un array con strings de las temperaturas
 		
 		double [] temps = new double [datos.length];  //  Creamos un array temps con igual tamaño, para ir metiendolos, 
 												      //  pero convertidos a números

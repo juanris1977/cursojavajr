@@ -62,7 +62,7 @@ public class CursosService {
 				}
 			}
 		}
-		catch (FileNotFoundException ex) {
+		catch (FileNotFoundException ex)                  {
 			try (FileOutputStream fos = new FileOutputStream (dir, true);
 				PrintStream out= new PrintStream (fos);) {}
 			
