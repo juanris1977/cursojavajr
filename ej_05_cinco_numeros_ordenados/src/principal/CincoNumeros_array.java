@@ -31,8 +31,6 @@ public class CincoNumeros_array {
 		while (cont <5);    // Ya tengo un array con 5 unidades distintas
 		
 		
-				
-	//	datos.toArray(array);      //  Ya existe un método para convertir un hashmap en array
 		
 		for (Integer c: array) {
 			System.out.println(c);

@@ -14,7 +14,7 @@ import java.util.Date;
 import model.Pedido;
 
 public class PedidosService {
-	String dir ="C:\\Users\\manana\\principal\\pedidos.txt";
+	String dir ="C:\\ficheroseclipse\\pedidos.txt";
 	SimpleDateFormat fm = new SimpleDateFormat("dd-MM-yyyy");
 	
 	public void nuevoPedido (String producto, Date fecha, double precio) {

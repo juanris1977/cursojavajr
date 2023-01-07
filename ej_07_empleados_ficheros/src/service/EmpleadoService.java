@@ -18,9 +18,12 @@ public class EmpleadoService {
 	DateTimeFormatter formatofecha=DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	public void añadirEmpleado(String nombre, LocalDate fecha, double salario, String departamento) {
+		
 		try (FileOutputStream fos = new FileOutputStream(ruta,true);
 				PrintStream out = new PrintStream(fos)){
-				out.println(nombre +"|"+ fecha +"|"+ salario +"|"+ departamento) ;
+				System.out.println(fecha);
+				
+				out.println(nombre +"|"+ fecha.format(formatofecha) +"|"+ salario +"|"+ departamento) ;
 			}
 			catch (FileNotFoundException ex) {
 				ex.printStackTrace();
@@ -33,19 +36,20 @@ public class EmpleadoService {
 	
 	public Empleado masAntiguo() {
 		Empleado res= null;
-		LocalDate fechaantiguo = LocalDate.of(1900,01,01); //Ponemos fecha 1 de enero de 1900 como la más antigua
+		LocalDate fechaantiguo = LocalDate.now(); 
 			
 		try (FileReader fr = new FileReader(ruta);
 			 BufferedReader br = new BufferedReader (fr)) {
 			
 			String linea = br.readLine();
 			while (linea!=null) {
-				String [] datoslinea=linea.split("[|");
+				String [] datoslinea=linea.split("[|]");
 				Empleado empleado = new Empleado (datoslinea[0], LocalDate.parse(datoslinea[1], formatofecha), Double.parseDouble(datoslinea[2]),datoslinea[3]);
 				if (empleado.getFecha().isBefore(fechaantiguo)) {
 					res = empleado;
 					fechaantiguo = empleado.getFecha();
-				}						
+				}	
+				 linea = br.readLine();
 			}			
 		}
 		catch (FileNotFoundException exi) {
@@ -66,12 +70,13 @@ public class EmpleadoService {
 			
 			String linea = br.readLine();
 			while (linea!=null) {
-				String [] datoslinea=linea.split("[|");
+				String [] datoslinea=linea.split("[|]");
 				Empleado empleado = new Empleado (datoslinea[0], LocalDate.parse(datoslinea[1], formatofecha), Double.parseDouble(datoslinea[2]),datoslinea[3]);
 				if (empleado.getSalario()>salariomayor) {
 					res = empleado;
 					salariomayor = empleado.getSalario();
-				}						
+				}	
+				 linea = br.readLine();
 			}			
 		}
 		catch (FileNotFoundException exi) {
@@ -84,7 +89,7 @@ public class EmpleadoService {
 		
 	}
 	public ArrayList<Empleado> empleadosPorDepartamento(String dpto) {
-		ArrayList<Empleado> res= null;
+		ArrayList<Empleado> res= new ArrayList<>();
 		
 			
 		try (FileReader fr = new FileReader(ruta);
@@ -92,11 +97,13 @@ public class EmpleadoService {
 			
 			String linea = br.readLine();
 			while (linea!=null) {
-				String [] datoslinea=linea.split("[|");
+				String [] datoslinea=linea.split("[|]");
 				Empleado empleado = new Empleado (datoslinea[0], LocalDate.parse(datoslinea[1], formatofecha), Double.parseDouble(datoslinea[2]),datoslinea[3]);
 				if (empleado.getDepartamento().equalsIgnoreCase(dpto)) {
-					 res.add(empleado);					
-				}						
+					 res.add(empleado);		
+					
+				}	
+				 linea = br.readLine();
 			}			
 		}
 		catch (FileNotFoundException exi) {
@@ -108,8 +115,8 @@ public class EmpleadoService {
 		return res;
 	}
 	
-	public ArrayList<Empleado> mostrarTodos(String dpto) {
-		ArrayList<Empleado> res= null;
+	public ArrayList<Empleado> mostrarTodos() {
+		ArrayList<Empleado> res=new ArrayList<>();
 		
 			
 		try (FileReader fr = new FileReader(ruta);
@@ -117,11 +124,11 @@ public class EmpleadoService {
 			
 			String linea = br.readLine();
 			while (linea!=null) {
-				String [] datoslinea=linea.split("[|");
+				String [] datoslinea=linea.split("[|]");
 				Empleado empleado = new Empleado (datoslinea[0], LocalDate.parse(datoslinea[1], formatofecha), Double.parseDouble(datoslinea[2]),datoslinea[3]);
 				
-					 res.add(empleado);					
-										
+					 res.add(empleado);		
+					 linea = br.readLine();										
 			}			
 		}
 		catch (FileNotFoundException exi) { 
