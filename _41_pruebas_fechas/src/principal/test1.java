@@ -1,5 +1,6 @@
 package principal;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,7 +9,7 @@ public class test1 {
 
 	public static void main(String[] args)  {
 		int suma = 3;
-	/*	Date d1 = new Date();
+		Date d1 = new Date();
 		Date d2 = new Date (3052245522323L);  // milisegundos desde 1 enero 1970 , si el número es muy grande, la L , lo "convierte" a Long
 		System.out.println("d1: "+d1);
 		System.out.println("d2: "+d2);
@@ -23,7 +24,11 @@ public class test1 {
 		SimpleDateFormat formatofecha=new SimpleDateFormat("dd-MM-yyyy h:mm:ss");
 		
 		System.out.println(formatofecha.format(d1));
-		System.out.println(formatofecha.format(d2));*/
+		System.out.println(formatofecha.format(d2));
+		
+		DateFormat df =DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.FULL);
+		System.out.println("con dateFormat: "+df.format(d1));
+		System.out.println("con dateFormat: "+df.format(d2));
 
 		// parseado de fechas
 		
