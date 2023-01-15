@@ -8,15 +8,16 @@ package view;
 6.- Salir*/
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import model.Curso;
-import service.CursosService;
+import service.CursosServiceConjuntos;
 
 public class CursosView {
 
 
-	static CursosService service = new CursosService(); 
+	static CursosServiceConjuntos service = new CursosServiceConjuntos(); 
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -84,7 +85,7 @@ public class CursosView {
 		System.out.println("Tematica del curso: ");
 		tematica= sc.nextLine();		
 		
-		service.añadirCurso(nom, duracion, precio, tematica);
+		service.añadirCurso(new Curso(nom, duracion, precio, tematica));
 	}
 	
 	static void buscarCurso() {
@@ -111,12 +112,13 @@ public class CursosView {
 	static void cursosTematica () {
 		System.out.println("Introduce temática: ");
 		String tematica = sc.nextLine();
-		ArrayList<String> cur=service.cursosTematica(tematica);
+		List<Curso> curso=service.cursosTematica(tematica);
 		
-		if (cur.size()>0) {
+		if (curso.size()>0) {
 			System.out.println("Existen los siguientes cursos con temática "+tematica);
-			for (String c: cur) {
-				System.out.println(c);
+			for (Curso c: curso) {
+				System.out.println("El curso "+c.getNombre()+" de "+c.getDuracion()+" horas de duración, y con precio de "+
+						c.getPrecio()+ "€ , es de la tematica "+c.getTematica());
 			}
 		}else {
 			System.out.println("No Existe ningún curso con temática "+tematica);
@@ -127,8 +129,9 @@ public class CursosView {
 	
 	static void eliminarCurso () {
 		System.out.println("Introduce el precio máximo y eliminamos los cursos mas caros que ese precio: ");
-
-		System.out.println("Se han eliminado "+service.eliminarCurso(Integer.parseInt(sc.nextLine()))+" cursos");
+		int precio= Integer.parseInt(sc.nextLine());
+		System.out.println("Se han eliminado los cursos más caros de "+ precio);		
+		service.eliminarCurso(precio);
 	}
 	static void mostrarTodos() {
 		

@@ -13,6 +13,11 @@ public class Curso {
 		this.precio = precio;
 		this.tematica = tematica;
 	}
+	
+	public Curso() {
+		
+	
+	}
 
 	public String getNombre() {
 		return nombre;

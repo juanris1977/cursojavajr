@@ -17,11 +17,15 @@ public class CursosView {
 
 
 	static CursosService service = new CursosService(); 
+	
+	
+	
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int opcion;
+		
+
+		int opcion;    
 		do {
 			mostrarMenu();
 			opcion=Integer.parseInt(sc.nextLine());  // lee opcion elegida
@@ -85,6 +89,8 @@ public class CursosView {
 		tematica= sc.nextLine();		
 		
 		service.añadirCurso(nom, duracion, precio, tematica);
+		
+		service.añadirCurso("java", 5, 20, "programar");
 	}
 	
 	static void buscarCurso() {

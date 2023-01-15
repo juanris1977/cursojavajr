@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import model.Curso;
 /*
@@ -9,28 +10,33 @@ import model.Curso;
 2.- Buscar curso
 3.- Duración media de cursos
 4.- Cursos por temática
-5.- Eliminar cursos por precio     Mesa m = new Mesa ();
+5.- Eliminar cursos por precio
 6.- Mostrar todos los cursos
 7.- Salir
 */
-public class CursosService {
+public class CursosServiceConjuntos {
 
-	HashSet <Curso> curso = new HashSet <>();
+	HashSet <Curso> cursos = new HashSet <>();   // Creamos un hashset (conjunto) para guardar los cursos
 	
-	public void añadirCurso(String nombre, int duracion, double precio, String tematica) {
+	public boolean añadirCurso(Curso curso) {
 		
-		
-		
-		curso.add(new Curso(nombre, duracion, precio, tematica));	
+		for(Curso c: cursos) {
+			if(c.getNombre().equalsIgnoreCase(curso.getNombre())) {
+				return false;				
+			} 	
+		}
+		cursos.add(curso);	
+		return true;
 	}
 	
 	
 	public Curso buscarCurso(String cursobuscado ) {
 		Curso res = null;
 		
-		for(Curso c : curso) {
+		for(Curso c : cursos) {
 			if (c.getNombre().equalsIgnoreCase(cursobuscado)) {
 				res = c;
+				break;
 			}
 		}
 		
@@ -40,53 +46,47 @@ public class CursosService {
 	public double duracionMedia() {
 		double media=0;
 		
-		for (Curso c : curso) {
+		for (Curso c : cursos) {
 			media=media+c.getDuracion();			
 		}
 		
-		return media/curso.size() ;
+		return media/cursos.size() ;
 		
 		
 	}
 	
-	public ArrayList<String> cursosTematica(String tematica) {
+	public List<Curso> cursosTematica(String tematica) {
 		
-		ArrayList<String> res = new ArrayList<>();
+		List<Curso> res =  new ArrayList<>();
+		
 		// quiero devolver un arraylist  de nombres de cursos con esa tematica 
-		for (Curso c : curso) {
+		for (Curso c : cursos) {
 			if (c.getTematica().equalsIgnoreCase(tematica)) {
-				res.add(c.getNombre());
+				res.add(c);
 			}
 		}
 		return res;
 		
 	}
 	
-	public int  eliminarCurso(int precio) {
-		int cuantos=0;
-		for (Curso c: curso) {
-			if (c.getPrecio() > precio) {
-				curso.remove(c);
-				cuantos++;
-			}
-		}
-		return cuantos;
-	}
-	/*
-	public void  eliminarCurso(double precio) {
+	public void  eliminarCurso(int precio) {
 		
-		for (Curso c: curso) {
+		/*for (Curso c: cursos) {
 			if (c.getPrecio() > precio) {
-				curso.remove(c);
+				cursos.remove(c);
 				
 			}
-		}
+		}*/
+		
+		cursos.removeIf( c -> c.getPrecio() > precio);  // removeif necesita un predicado
+		// el predicado lo creamos con una lambda
+		
 	}
-	*/
+
 	
 	public ArrayList<Curso>  mostrarTodos () {
 		 ArrayList<Curso> res = new ArrayList<>();
-		 for (Curso c: curso) {
+		 for (Curso c: cursos) {
 			 res.add(c);
 			
 		}
