@@ -62,16 +62,20 @@ public class CursosService {
 		
 	}
 	
-	public int  eliminarCurso(int precio) {
-		int cuantos=0;
-		for (Curso c: curso) {
+	public void  eliminarCurso(int precio) {
+
+		/*for (Curso c: cursos) {
 			if (c.getPrecio() > precio) {
-				curso.remove(c);
-				cuantos++;
+				cursos.remove(c);
+				
 			}
-		}
-		return cuantos;
+		}*/
+		
+		curso.removeIf( c -> c.getPrecio() > precio);  // removeif necesita un predicado
+		// el predicado lo creamos con una lambda
+		
 	}
+	
 	/*
 	public void  eliminarCurso(double precio) {
 		

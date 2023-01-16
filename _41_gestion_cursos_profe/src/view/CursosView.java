@@ -13,11 +13,12 @@ import java.util.Scanner;
 
 import model.Curso;
 import service.CursosServiceConjuntos;
+import service.CursosServiceFicheros;
 
 public class CursosView {
 
 
-	static CursosServiceConjuntos service = new CursosServiceConjuntos(); 
+	static CursosServiceFicheros service = new CursosServiceFicheros(); 
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -85,7 +86,7 @@ public class CursosView {
 		System.out.println("Tematica del curso: ");
 		tematica= sc.nextLine();		
 		
-		service.añadirCurso(new Curso(nom, duracion, precio, tematica));
+		service.agregarCurso(new Curso(nom, duracion, precio, tematica));
 	}
 	
 	static void buscarCurso() {

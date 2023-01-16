@@ -134,7 +134,7 @@ public class CursosView {
 	static void eliminarCurso () {
 		System.out.println("Introduce el precio máximo y eliminamos los cursos mas caros que ese precio: ");
 
-		System.out.println("Se han eliminado "+service.eliminarCurso(Integer.parseInt(sc.nextLine()))+" cursos");
+		service.eliminarCurso(Integer.parseInt(sc.nextLine()));
 	}
 	static void mostrarTodos() {
 		
