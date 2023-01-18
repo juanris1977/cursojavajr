@@ -14,7 +14,7 @@ import model.Curso;
 6.- Mostrar todos los cursos
 7.- Salir
 */
-public class CursosServiceConjuntos {
+public class CursosServiceConjuntos_lambdas {
 
 	HashSet <Curso> cursos = new HashSet <>();   // Creamos un hashset (conjunto) para guardar los cursos
 	
@@ -24,35 +24,21 @@ public class CursosServiceConjuntos {
 			if(c.getNombre().equalsIgnoreCase(curso.getNombre())) {
 				return false;				
 			} 	
-		}		
+		}
 		cursos.add(curso);	
 		return true;
-		/*boolean resultado= true;
-		cursos.forEach(c -> {
-						if(c.getNombre().equalsIgnoreCase(curso.getNombre())) {
-						resultado = false;	// en una lambda no se pueden modificar variables locales	
-						} 
-			
-							}
-					  );
-		if (resultado) {
-			cursos.add(curso);
-		}
-		return resultado;*/
-					
 	}
 	
 	
 	public Curso buscarCurso(String cursobuscado ) {
 		Curso res = null;
 		
-		/*for(Curso c : cursos) {
+		for(Curso c : cursos) {
 			if (c.getNombre().equalsIgnoreCase(cursobuscado)) {
 				res = c;
 				break;
 			}
-		}*/
-		cursos.forEach(null);
+		}
 		
 		return res;
 	}
