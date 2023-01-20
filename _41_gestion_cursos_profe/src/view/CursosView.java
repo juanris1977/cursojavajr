@@ -12,13 +12,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.Curso;
-import service.CursosServiceConjuntos;
-import service.CursosServiceFicheros;
+import service.CursosServiceConjuntos_lambdas;
 
 public class CursosView {
 
 
-	static CursosServiceFicheros service = new CursosServiceFicheros(); 
+	static CursosServiceConjuntos_lambdas service = new CursosServiceConjuntos_lambdas(); 
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -93,7 +92,8 @@ public class CursosView {
 		String nombrecurso;
 		System.out.println("Qué curso buscas: ");
 		nombrecurso=sc.nextLine();
-		Curso curso=service.buscarCurso(nombrecurso);
+		//Curso curso=service.buscarCurso(nombrecurso);
+		Curso curso=service.buscarCurso(c->c.getNombre().equalsIgnoreCase(nombrecurso));
 		
 		if (curso==null) {
 			System.out.println("El curso "+nombrecurso+ " que estás buscando no existe");
@@ -139,7 +139,7 @@ public class CursosView {
 		ArrayList<Curso> cur = service.mostrarTodos();
 		
 		for(Curso c:cur){		
-		System.out.println(((Curso) c).getNombre()+"-->"+c.getDuracion()+" horas "+ c.getPrecio()+" € "+ "("+c.getTematica()+")");
+		System.out.println( c.getNombre()+"-->"+c.getDuracion()+" horas "+ c.getPrecio()+" € "+ "("+c.getTematica()+")");
 		}
 	}
 }

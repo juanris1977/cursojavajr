@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Predicate;
 
 import model.Curso;
 /*
@@ -18,7 +19,7 @@ public class CursosServiceConjuntos_lambdas {
 
 	HashSet <Curso> cursos = new HashSet <>();   // Creamos un hashset (conjunto) para guardar los cursos
 	
-	public boolean añadirCurso(Curso curso) {
+	public boolean agregarCurso(Curso curso) {
 		
 		for(Curso c: cursos) {
 			if(c.getNombre().equalsIgnoreCase(curso.getNombre())) {
@@ -35,6 +36,19 @@ public class CursosServiceConjuntos_lambdas {
 		
 		for(Curso c : cursos) {
 			if (c.getNombre().equalsIgnoreCase(cursobuscado)) {
+				res = c;
+				break;
+			}
+		}
+		
+		return res;
+	}
+	
+	public Curso buscarCurso(Predicate<Curso> cond ) {
+		Curso res = null;
+		
+		for(Curso c : cursos) {
+			if (cond.test(c)) {
 				res = c;
 				break;
 			}
